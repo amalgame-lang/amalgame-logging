@@ -1,0 +1,28 @@
+# Package manifest — amalgame-logging
+#
+# Pure-Amalgame logging facade — four levels (Debug/Info/Warn/Error)
+# emitted to stderr with a UTC ISO 8601 timestamp + fixed-width
+# label, optional file sink. State globals live in a top-level
+# `@c { … }` block (post-v0.7.5 file-scope extension). Originally
+# bundled in amc's src/stdlib/logging.am; extracted into this
+# external package as part of the framework split.
+#
+# Installation:
+#
+#   amc package add logging                  # via curated index
+#   amc package add github.com/amalgame-lang/amalgame-logging@v0.1.0
+
+[package]
+name              = "amalgame-logging"
+version           = "0.1.0"
+license           = "Apache-2.0"
+description       = "Pure-Amalgame logging facade: 4 levels + ISO timestamps + file sink."
+authors           = ["Bastien Mouget"]
+required-amalgame = ">=0.7.7"
+schema-version    = 1
+
+[stdlib]
+class     = "Log"
+header    = "facade-stub.h"
+namespace = "Amalgame.Logging"
+facade    = "facade.am"
