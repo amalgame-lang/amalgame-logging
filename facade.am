@@ -93,6 +93,25 @@ public class Log {
         }
     }
 
+    // Emit a line VERBATIM — no timestamp, no level label — to stderr
+    // and the optional file sink, followed by a single newline. For
+    // structured / machine-readable output (e.g. one JSON object per
+    // line) where the caller owns the entire line format. Gated at the
+    // INFO threshold so `level = "warn"` still silences it. (v0.2.0)
+    public static void Raw(msg: string) {
+        @c {
+            if (Amalgame_Logging_MinLevel > 1) return;
+            fprintf(stderr, "%s\n", msg ? msg : "");
+            if (Amalgame_Logging_FilePath) {
+                FILE* f = fopen(Amalgame_Logging_FilePath, "a");
+                if (f) {
+                    fprintf(f, "%s\n", msg ? msg : "");
+                    fclose(f);
+                }
+            }
+        }
+    }
+
     // ── Emit ─────────────────────────────────────────────
     //
     // Each body is a standalone @c block so the level / label is

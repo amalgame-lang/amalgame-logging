@@ -14,9 +14,9 @@
 
 [package]
 name              = "amalgame-logging"
-version           = "0.1.0"
+version           = "0.2.0"
 license           = "Apache-2.0"
-description       = "Pure-Amalgame logging facade: 4 levels + ISO timestamps + file sink."
+description       = "Pure-Amalgame logging facade: 4 levels + ISO timestamps + file sink. v0.2.0 adds Log.Raw(line) — emit a verbatim line (no timestamp/level prefix) to stderr + file sink, for structured one-JSON-object-per-line output where the caller owns the whole line."
 authors           = ["Bastien Mouget"]
 required-amalgame = ">=0.7.7"
 schema-version    = 1
